@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "TravelNaja_demo",
+    "slug": "TravelNaja_demo",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "TravelNaja_demo"
+}
