@@ -39,6 +39,7 @@ const ApplyGuide = () => {
             paddingLeft: 35,
             paddingRight: 35,
             paddingBottom: 35,
+            backgroundColor: '#FFECEF'
         },
         headerText: {
             textAlign: 'center',
@@ -48,7 +49,23 @@ const ApplyGuide = () => {
         },
         errorText: {
             color: 'red',
-            marginTop: 5,
+        },
+        inputContainer: {
+            backgroundColor: '#FFFFFF',
+            borderRadius: 10,
+            paddingLeft: 20,
+            borderColor: '#FFFFFF',
+            paddingRight: 20
+        },
+        inputStyle: {
+            marginLeft: 10,
+        },
+        headerText: {
+            fontSize: 22,
+            fontWeight: 'bold',
+            color: '#372948',
+            textAlign: 'center',
+            marginBottom: 30
         }
     });
 
@@ -142,10 +159,8 @@ const ApplyGuide = () => {
                 // Data successfully saved
                 navigation.navigate('Menu');
                 Alert.alert('Success', 'Your application has been submitted successfully.');
-                // You may also want to navigate to another screen or perform other actions upon success
             })
             .catch((error) => {
-                // Handle any errors that occur during the save operation
                 console.error('Error saving data to Firebase:', error.message);
             });
 
@@ -154,91 +169,142 @@ const ApplyGuide = () => {
     };
 
     return (
-        <ThemeProvider theme={theme}>
-            <ScrollView style={styles.container}>
-                <Text style={styles.headerText}>Apply Travel Naja Local Guide</Text>
+        <ScrollView style={styles.container}>
+            <Text style={styles.headerText}>Apply Travel Naja Local Guide</Text>
 
-                <Input
-                    label="First name"
-                    placeholder={'  firstname'}
-                    value={firstName}
-                    onChangeText={(text) => setFirstName(text)}
-                />
-                {errorFirstName ? <Text style={styles.errorText}>{errorFirstName}</Text> : null}
+            <Input
+                label="First name"
+                placeholder={'firstname'}
+                value={firstName}
+                onChangeText={(text) => setFirstName(text)}
+                inputContainerStyle={styles.inputContainer}
+                inputStyle={styles.inputStyle}
+                labelStyle={{
+                    color: '#372948'
+                }}
+            />
+            {errorFirstName ? <Text style={styles.errorText}>{errorFirstName}</Text> : null}
 
-                <Input
-                    label="Last name"
-                    placeholder={'  lastname'}
-                    value={lastName}
-                    onChangeText={(text) => setLastName(text)}
-                />
-                {errorLastName ? <Text style={styles.errorText}>{errorLastName}</Text> : null}
+            <Input
+                label="Last name"
+                placeholder={'lastname'}
+                value={lastName}
+                onChangeText={(text) => setLastName(text)}
+                inputContainerStyle={styles.inputContainer}
+                inputStyle={styles.inputStyle}
+                labelStyle={{
+                    color: '#372948'
+                }}
+            />
+            {errorLastName ? <Text style={styles.errorText}>{errorLastName}</Text> : null}
 
-                <Input
-                    label="Identification number"
-                    placeholder={'  9999999999999'}
-                    value={idNumber}
-                    onChangeText={(text) => setIdNumber(text)}
-                />
-                {errorIdNumber ? <Text style={styles.errorText}>{errorIdNumber}</Text> : null}
+            <Input
+                label="Identification number"
+                placeholder={'9999999999999'}
+                value={idNumber}
+                onChangeText={(text) => setIdNumber(text)}
+                inputContainerStyle={styles.inputContainer}
+                inputStyle={styles.inputStyle}
+                labelStyle={{
+                    color: '#372948'
+                }}
+            />
+            {errorIdNumber ? <Text style={styles.errorText}>{errorIdNumber}</Text> : null}
 
-                <Input
-                    label="Mobile"
-                    placeholder={'  0999999999'}
-                    value={mobile}
-                    onChangeText={(text) => setMobile(text)}
-                />
-                {errorMobile ? <Text style={styles.errorText}>{errorMobile}</Text> : null}
+            <Input
+                label="Mobile"
+                placeholder={'0999999999'}
+                value={mobile}
+                onChangeText={(text) => setMobile(text)}
+                inputContainerStyle={styles.inputContainer}
+                inputStyle={styles.inputStyle}
+                labelStyle={{
+                    color: '#372948'
+                }}
+            />
+            {errorMobile ? <Text style={styles.errorText}>{errorMobile}</Text> : null}
 
-                <Input
-                    label="Email"
-                    placeholder={'  email'}
-                    value={email}
-                    onChangeText={(text) => setEmail(text)}
-                />
-                {errorEmail ? <Text style={styles.errorText}>{errorEmail}</Text> : null}
+            <Input
+                label="Email"
+                placeholder={'email@mail.com'}
+                value={email}
+                onChangeText={(text) => setEmail(text)}
+                inputContainerStyle={styles.inputContainer}
+                inputStyle={styles.inputStyle}
+                labelStyle={{
+                    color: '#372948'
+                }}
+            />
+            {errorEmail ? <Text style={styles.errorText}>{errorEmail}</Text> : null}
 
-                <Input
-                    label="Skills"
-                    placeholder={'  skills'}
-                    value={skills}
-                    onChangeText={(text) => setSkills(text)}
-                />
-                {errorSkills ? <Text style={styles.errorText}>{errorSkills}</Text> : null}
+            <Input
+                label="Skills"
+                placeholder={'skills'}
+                value={skills}
+                onChangeText={(text) => setSkills(text)}
+                inputContainerStyle={{ ...styles.inputContainer, height: 100 }}
+                inputStyle={{ ...styles.inputStyle, textAlignVertical: 'top'}}
+                multiline={true}
+                labelStyle={{
+                    color: '#372948'
+                }}
+            />
+            {errorSkills ? <Text style={styles.errorText}>{errorSkills}</Text> : null}
 
-                <Input
-                    label="Experiences"
-                    placeholder={'  experiences'}
-                    value={experiences}
-                    onChangeText={(text) => setExperiences(text)}
-                />
-                {errorExperiences ? <Text style={styles.errorText}>{errorExperiences}</Text> : null}
+            <Input
+                label="Experiences"
+                placeholder={'experiences'}
+                value={experiences}
+                onChangeText={(text) => setExperiences(text)}
+                inputContainerStyle={{ ...styles.inputContainer, height: 100 }}
+                inputStyle={{ ...styles.inputStyle, textAlignVertical: 'top' }}
+                multiline={true}
+                labelStyle={{
+                    color: '#372948'
+                }}
+            />
+            {errorExperiences ? <Text style={styles.errorText}>{errorExperiences}</Text> : null}
 
-                <Input
-                    label="Travel Style"
-                    placeholder={'  travel style'}
-                    value={travelStyle}
-                    onChangeText={(text) => setTravelStyle(text)}
-                />
-                {errorTravelStyle ? <Text style={styles.errorText}>{errorTravelStyle}</Text> : null}
+            <Input
+                label="Travel Style"
+                placeholder={'travel style'}
+                value={travelStyle}
+                onChangeText={(text) => setTravelStyle(text)}
+                inputContainerStyle={{ ...styles.inputContainer, height: 100 }}
+                inputStyle={{ ...styles.inputStyle, textAlignVertical: 'top' }}
+                multiline={true}
+                labelStyle={{
+                    color: '#372948'
+                }}
+            />
+            {errorTravelStyle ? <Text style={styles.errorText}>{errorTravelStyle}</Text> : null}
 
-                <Input
-                    label="Tour program"
-                    placeholder={'  tour program'}
-                    value={tourProgram}
-                    onChangeText={(text) => setTourProgram(text)}
-                />
-                {errorTourProgram ? <Text style={styles.errorText}>{errorTourProgram}</Text> : null}
+            <Input
+                label="Tour program"
+                placeholder={'tour program'}
+                value={tourProgram}
+                onChangeText={(text) => setTourProgram(text)}
+                inputContainerStyle={{...styles.inputContainer, height: 100}}
+                multiline={true}
+                inputStyle={{ ...styles.inputStyle, textAlignVertical: 'top' }}
+                labelStyle={{
+                    color: '#372948'
+                }}
+            />
+            {errorTourProgram ? <Text style={styles.errorText}>{errorTourProgram}</Text> : null}
 
-                <Button
-                    title='Submit'
-                    onPress={handleSubmit}
-                    buttonStyle={{
-                        backgroundColor: '#8C472F'
-                    }}
-                />
-            </ScrollView>
-        </ThemeProvider>
+            <Button
+                title='Submit'
+                onPress={handleSubmit}
+                buttonStyle={{
+                    backgroundColor: '#372948',
+                    padding: 10,
+                    elevation: 0,
+                    marginBottom: 20,
+                    borderRadius: 50
+                }}
+            />
+        </ScrollView>
     );
 };
 

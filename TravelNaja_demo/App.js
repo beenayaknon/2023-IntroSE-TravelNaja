@@ -10,6 +10,8 @@ import Register_personal_info from './page/Register_personal_info.js';
 import Register_payment_info from './page/Register_payment_info.js';
 import Menu from './page/Menu.js';
 import ApplyGuide from './page/ApplyGuide.js';
+import Profile from './page/Profile.js';
+
 const Stack = createStackNavigator();
 
 function MyStack() {
@@ -17,43 +19,46 @@ function MyStack() {
     <Stack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: '#E9967A',
+          backgroundColor: '#FFECEF',
         },
-        headerTintColor: '#fff',
-        headerTitleStyle: {
-          fontWeight: 'bold',
-        },
+        headerTintColor: '#372948',
       }}
     >
 
       <Stack.Screen
         name="Menu"
         component={Menu}
-        options={{ title: 'Menu' }}
+        options={{ title: 'Travel Naja Demo' }}
       />
 
       <Stack.Screen
         name="Register_email"
         component={Register_email}
-        options={{ title: 'Register Travel Naja' }}
+        options={{ title: 'Travel Naja Registration demo' }}
       />
 
       <Stack.Screen
         name="Register_personal_info"
         component={Register_personal_info}
-        options={{ title: 'Register Travel Naja' }}
+        options={{ title: 'Travel Naja Registration demo' }}
       />
 
       <Stack.Screen
         name="Register_payment_info"
         component={Register_payment_info}
-        options={{ title: 'Register Travel Naja' }}
+        options={{ title: 'Travel Naja Registration demo' }}
       />
 
-<Stack.Screen
+      <Stack.Screen
         name="ApplyGuide"
         component={ApplyGuide}
-        options={{ title: 'Apply Local Guide' }}
+        options={{ title: 'Apply Local Guide demo' }}
+      />
+
+      <Stack.Screen
+        name="Profile"
+        component={Profile}
+        options={{ title: 'Travel Naja Registration demo' }}
       />
     </Stack.Navigator>
   );
@@ -70,7 +75,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffffff',
     alignItems: 'center',
     justifyContent: 'center',
   },

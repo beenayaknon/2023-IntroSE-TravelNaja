@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, ScrollView, Text, Alert } from 'react-native';
 import { ThemeProvider, Button, Input } from 'react-native-elements';
-import Icon from "react-native-vector-icons/FontAwesome";
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { db } from '../components/config';
 import { ref, set, push, get, update } from 'firebase/database';
@@ -15,10 +14,12 @@ const Register_payment_info = () => {
     const [expiryDateMM, setExpiryDateMM] = useState('');
     const [expiryDateYY, setExpiryDateYY] = useState('');
     const [cvv, setCVV] = useState('');
+    const [cardholder, setCardholder] = useState('');
     const [cardNumberError, setCardNumberError] = useState('');
     const [expiryDateErrorMM, setExpiryDateErrorMM] = useState('');
     const [expiryDateErrorYY, setExpiryDateErrorYY] = useState('');
     const [cvvError, setCVVError] = useState('');
+    const [cardHolderError, setCardholderError] = useState('');
 
     const theme = {
         Button: {
@@ -28,17 +29,34 @@ const Register_payment_info = () => {
 
     const styles = StyleSheet.create({
         container: {
-            flex: 1,
-            padding: 35
-        },
-        headerText: {
-            textAlign: 'center',
-            fontSize: 20,
-            fontWeight: 'bold',
-            marginBottom: 20,
+            padding: 35,
+            backgroundColor: '#FFECEF'
         },
         errorText: {
             color: 'red',
+        },
+        inputContainer: {
+            backgroundColor: '#FFFFFF',
+            borderRadius: 10,
+            paddingLeft: 20,
+            borderColor: '#FFFFFF',
+        },
+        inputStyle: {
+            marginLeft: 10,
+        },
+        headerText: {
+            fontSize: 22,
+            fontWeight: 'bold',
+            color: '#372948',
+            textAlign: 'center',
+            marginBottom: 30
+        },
+        inputContainerShort: {
+            backgroundColor: '#FFFFFF',
+            borderRadius: 10,
+            paddingLeft: 20,
+            borderColor: '#FFFFFF',
+            width: '40%'
         }
     });
 
@@ -52,13 +70,28 @@ const Register_payment_info = () => {
             return;
         }
 
+        if (expiryDateMM.length != 2 || !/^\d+$/.test(expiryDateMM)) {
+            setExpiryDateErrorMM('Should be MM format (e.g. 05, 10)');
+            return;
+        }
+
         if (!expiryDateYY) {
-            setExpiryDateErrorMM('Please fill in the expiry date field');
+            setExpiryDateErrorYY('Please fill in the expiry date field');
+            return;
+        }
+
+        if (expiryDateYY.length != 2 || !/^\d+$/.test(expiryDateYY)) {
+            setExpiryDateErrorYY('Should be YY format (e.g. 05, 10)');
             return;
         }
 
         if (!cvv) {
             setCVVError('Please fill in the CVV field');
+            return;
+        }
+
+        if (!cardholder) {
+            setCardholderError('Please fill in the Cardholder name');
             return;
         }
 
@@ -79,34 +112,44 @@ const Register_payment_info = () => {
             return;
         }
 
+        if (!/^[A-Za-z]+$/.test(cardholder)) {
+            setCardholderError('Cardholder name should not contain numbers (0-9) or special characters');
+            return;
+        }
+
         const postListRef = ref(db, 'User-account/' + userId);
         update(postListRef, {
             ...route.params,
             cardNumber: cardNumber,
             expiryDateMM: expiryDateMM,
             expiryDateYY: expiryDateYY,
-            cvv: cvv
+            cvv: cvv,
+            cardholder: cardholder
         });
 
-        // If all fields are filled, navigate to the next page
-        navigation.navigate('Menu');
+        navigation.navigate('Profile', {
+            userId: userId
+        });
         Alert.alert('Success', 'Your application has been submitted successfully.');
     };
 
     return (
-        <ThemeProvider theme={theme}>
             <ScrollView style={styles.container}>
                 <Text style={styles.headerText}>Payment Information</Text>
 
-                {/* card number input */}
                 <Input
                     label="Card Number"
                     value={cardNumber}
                     onChangeText={(text) => {
                         setCardNumber(text);
-                        setCardNumberError(''); // Clear error when user starts typing
+                        setCardNumberError('');
                     }}
-                    placeholder={'  1234 5678 9012 3456'}
+                    inputContainerStyle={styles.inputContainer}
+                    inputStyle={styles.inputStyle}
+                    labelStyle={{
+                        color: '#372948'
+                    }}
+                    placeholder={'1234 5678 9012 3456'}
                 />
                 <Text style={styles.errorText}>{cardNumberError}</Text>
 
@@ -116,9 +159,14 @@ const Register_payment_info = () => {
                     value={expiryDateMM}
                     onChangeText={(text) => {
                         setExpiryDateMM(text);
-                        setExpiryDateErrorMM(''); // Clear error when user starts typing
+                        setExpiryDateErrorMM('');
                     }}
-                    placeholder={'  MM'}
+                    inputContainerStyle={styles.inputContainerShort}
+                    inputStyle={styles.inputStyle}
+                    labelStyle={{
+                        color: '#372948'
+                    }}
+                    placeholder={'MM'}
                 />
                 <Text style={styles.errorText}>{expiryDateErrorMM}</Text>
 
@@ -126,34 +174,65 @@ const Register_payment_info = () => {
                     value={expiryDateYY}
                     onChangeText={(text) => {
                         setExpiryDateYY(text);
-                        setExpiryDateErrorYY(''); // Clear error when user starts typing
+                        setExpiryDateErrorYY('');
                     }}
-                    placeholder={'  YY'}
+                    inputContainerStyle={styles.inputContainerShort}
+                    inputStyle={styles.inputStyle}
+                    labelStyle={{
+                        color: '#372948'
+                    }}
+                    placeholder={'YY'}
                 />
                 <Text style={styles.errorText}>{expiryDateErrorYY}</Text>
 
-                {/* CVV input */}
                 <Input
                     label="CVV"
                     value={cvv}
                     onChangeText={(text) => {
                         setCVV(text);
-                        setCVVError(''); // Clear error when user starts typing
+                        setCVVError('');
                     }}
-                    placeholder={'  123'}
+                    inputContainerStyle={styles.inputContainerShort}
+                    inputStyle={styles.inputStyle}
+                    labelStyle={{
+                        color: '#372948'
+                    }}
+                    placeholder={'123'}
                 />
                 <Text style={styles.errorText}>{cvvError}</Text>
 
-                <Button
-                    title='Next'
-                    onPress={handleNext}
-                    buttonStyle={{
-                        backgroundColor: '#8C472F'
+                <Input
+                    label="Cardholder Name"
+                    value={cardholder}
+                    onChangeText={(text) => {
+                        setCardholder(text);
+                        setCardholderError('');
                     }}
+                    inputContainerStyle={styles.inputContainer}
+                    inputStyle={styles.inputStyle}
+                    labelStyle={{
+                        color: '#372948'
+                    }}
+                    placeholder={'Cardholder name'}
                 />
+                <Text style={styles.errorText}>{cardHolderError}</Text>
+
+                <Button
+                title='Next'
+                onPress={handleNext}
+                buttonStyle={{
+                    backgroundColor: '#372948',
+                    padding: 10,
+                    marginBottom: 20,
+                    borderRadius: 50,
+                }}
+                titleStyle={{
+                    color: '#ffffff',
+                    fontSize: 18,
+                }}
+            />
 
             </ScrollView>
-        </ThemeProvider>
     );
 };
 

@@ -30,17 +30,27 @@ const Register_personal_info = () => {
 
     const styles = StyleSheet.create({
         container: {
-            flex: 1,
-            padding: 35
-        },
-        headerText: {
-            textAlign: 'center',
-            fontSize: 20,
-            fontWeight: 'bold',
-            marginBottom: 20,
+            padding: 35,
+            backgroundColor: '#FFECEF'
         },
         errorText: {
             color: 'red',
+        },
+        inputContainer: {
+            backgroundColor: '#FFFFFF',
+            borderRadius: 10,
+            paddingLeft: 20,
+            borderColor: '#FFFFFF',
+        },
+        inputStyle: {
+            marginLeft: 10,
+        },
+        headerText: {
+            fontSize: 22,
+            fontWeight: 'bold',
+            color: '#372948',
+            textAlign: 'center',
+            marginBottom: 30
         }
     });
 
@@ -78,7 +88,7 @@ const Register_personal_info = () => {
             return;
         }
 
-        const postListRef = ref(db, 'User-account/'+userId);
+        const postListRef = ref(db, 'User-account/' + userId);
         update(postListRef, {
             ...route.params,
             firstName: firstName,
@@ -88,58 +98,77 @@ const Register_personal_info = () => {
             favoriteHotel: favoriteHotel
         });
 
-        // Navigate to the next page
         navigation.navigate('Register_payment_info', {
             userId: userId
         });
     };
 
     return (
-        <ThemeProvider theme={theme}>
-            <ScrollView style={styles.container}>
-                <Text style={styles.headerText}>Personal Information</Text>
+        <ScrollView style={styles.container}>
+            <Text style={styles.headerText}>Personal Information</Text>
 
-                <Input
-                    label="First name"
-                    value={firstName}
-                    onChangeText={(text) => {
-                        setFirstName(text);
-                        setFirstNameError('');
-                    }}
-                    placeholder={'  firstname'}
-                />
-                <Text style={styles.errorText}>{firstNameError}</Text>
+            <Input
+                label="First name"
+                value={firstName}
+                onChangeText={(text) => {
+                    setFirstName(text);
+                    setFirstNameError('');
+                }}
+                inputContainerStyle={styles.inputContainer}
+                inputStyle={styles.inputStyle}
+                labelStyle={{
+                    color: '#372948'
+                }}
+                placeholder={'firstname'}
 
-                <Input
-                    label="Last name"
-                    value={lastName}
-                    onChangeText={(text) => {
-                        setLastName(text);
-                        setLastNameError('');
-                    }}
-                    placeholder={'  lastname'}
-                />
-                <Text style={styles.errorText}>{lastNameError}</Text>
+            />
+            <Text style={styles.errorText}>{firstNameError}</Text>
 
-                <Input
-                    label="Mobile"
-                    value={mobile}
-                    onChangeText={(text) => {
-                        setMobile(text);
-                        setMobileError('');
-                    }}
-                    placeholder={'  0999999999'}
-                />
-                <Text style={styles.errorText}>{mobileError}</Text>
+            <Input
+                label="Last name"
+                value={lastName}
+                onChangeText={(text) => {
+                    setLastName(text);
+                    setLastNameError('');
+                }}
+                inputContainerStyle={styles.inputContainer}
+                inputStyle={styles.inputStyle}
+                placeholder={'lastname'}
+                labelStyle={{
+                    color: '#372948'
+                }}
+            />
+            <Text style={styles.errorText}>{lastNameError}</Text>
 
-                <Input
+            <Input
+                label="Mobile"
+                value={mobile}
+                onChangeText={(text) => {
+                    setMobile(text);
+                    setMobileError('');
+                }}
+                inputContainerStyle={styles.inputContainer}
+                inputStyle={styles.inputStyle}
+                placeholder={'0999999999'}
+                labelStyle={{
+                    color: '#372948'
+                }}
+            />
+            <Text style={styles.errorText}>{mobileError}</Text>
+
+            <Input
                 label="Favorite Car"
                 value={favoriteCar}
                 onChangeText={(text) => {
                     setFavoriteCar(text);
                     setFavoriteCarError('');
                 }}
-                placeholder={'  e.g., Sedan'}
+                inputContainerStyle={styles.inputContainer}
+                inputStyle={styles.inputStyle}
+                placeholder={'e.g., Sedan'}
+                labelStyle={{
+                    color: '#372948'
+                }}
             />
 
             <Input
@@ -147,21 +176,32 @@ const Register_personal_info = () => {
                 value={favoriteHotel}
                 onChangeText={(text) => {
                     setFavoriteHotel(text);
-                    setFavoriteHotelError(''); 
+                    setFavoriteHotelError('');
                 }}
-                placeholder={'  e.g., Resorts'}
+                inputContainerStyle={styles.inputContainer}
+                inputStyle={styles.inputStyle}
+                placeholder={'e.g., Resorts'}
+                labelStyle={{
+                    color: '#372948'
+                }}
             />
 
 
-                <Button
-                    title='Next'
-                    onPress={handleNext}
-                    buttonStyle={{
-                        backgroundColor: '#8C472F'
-                    }}
-                />
-            </ScrollView>
-        </ThemeProvider>
+            <Button
+                title='Next'
+                onPress={handleNext}
+                buttonStyle={{
+                    backgroundColor: '#372948',
+                    padding: 10,
+                    marginBottom: 20,
+                    borderRadius: 50,
+                }}
+                titleStyle={{
+                    color: '#ffffff',
+                    fontSize: 18,
+                }}
+            />
+        </ScrollView>
     );
 };
 
