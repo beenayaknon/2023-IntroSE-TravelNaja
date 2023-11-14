@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, ScrollView, View, Text } from 'react-native';
 import { ThemeProvider, Button, Input, Image } from 'react-native-elements';
-import Icon from "react-native-vector-icons/FontAwesome";
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { db } from '../components/config';
 import { ref, set, push, get, update } from 'firebase/database';
@@ -30,14 +29,13 @@ const Register_personal_info = () => {
 
     const styles = StyleSheet.create({
         container: {
-            padding: 35,
-            backgroundColor: '#FFECEF'
+            backgroundColor: '#ffffff'
         },
         errorText: {
             color: 'red',
         },
         inputContainer: {
-            backgroundColor: '#FFFFFF',
+            backgroundColor: '#F5F5F5',
             borderRadius: 10,
             paddingLeft: 20,
             borderColor: '#FFFFFF',
@@ -48,7 +46,7 @@ const Register_personal_info = () => {
         headerText: {
             fontSize: 22,
             fontWeight: 'bold',
-            color: '#372948',
+            color: '#ffffff',
             textAlign: 'center',
             marginBottom: 30
         }
@@ -105,8 +103,18 @@ const Register_personal_info = () => {
 
     return (
         <ScrollView style={styles.container}>
-            <Text style={styles.headerText}>Personal Information</Text>
-
+            <View style={{
+                paddingTop: 50,
+                backgroundColor: '#372948',
+                borderBottomLeftRadius: 25,
+                borderBottomRightRadius: 25
+            }}>
+                <Text style={styles.headerText}>Personal Information</Text>
+            </View>
+            <View style={{
+                padding: 35,
+                marginTop: 10
+            }}>
             <Input
                 label="First name"
                 value={firstName}
@@ -201,6 +209,7 @@ const Register_personal_info = () => {
                     fontSize: 18,
                 }}
             />
+            </View>
         </ScrollView>
     );
 };

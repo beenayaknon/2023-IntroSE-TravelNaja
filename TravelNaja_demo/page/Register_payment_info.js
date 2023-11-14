@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, ScrollView, Text, Alert } from 'react-native';
-import { ThemeProvider, Button, Input } from 'react-native-elements';
+import { Button, Input } from 'react-native-elements';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { db } from '../components/config';
 import { ref, set, push, get, update } from 'firebase/database';
@@ -30,13 +30,13 @@ const Register_payment_info = () => {
     const styles = StyleSheet.create({
         container: {
             padding: 35,
-            backgroundColor: '#FFECEF'
+            backgroundColor: '#ffffff'
         },
         errorText: {
             color: 'red',
         },
         inputContainer: {
-            backgroundColor: '#FFFFFF',
+            backgroundColor: '#F5F5F5',
             borderRadius: 10,
             paddingLeft: 20,
             borderColor: '#FFFFFF',
@@ -52,7 +52,7 @@ const Register_payment_info = () => {
             marginBottom: 30
         },
         inputContainerShort: {
-            backgroundColor: '#FFFFFF',
+            backgroundColor: '#F5F5F5',
             borderRadius: 10,
             paddingLeft: 20,
             borderColor: '#FFFFFF',
@@ -134,90 +134,92 @@ const Register_payment_info = () => {
     };
 
     return (
-            <ScrollView style={styles.container}>
-                <Text style={styles.headerText}>Payment Information</Text>
+        <ScrollView style={styles.container}>
 
-                <Input
-                    label="Card Number"
-                    value={cardNumber}
-                    onChangeText={(text) => {
-                        setCardNumber(text);
-                        setCardNumberError('');
-                    }}
-                    inputContainerStyle={styles.inputContainer}
-                    inputStyle={styles.inputStyle}
-                    labelStyle={{
-                        color: '#372948'
-                    }}
-                    placeholder={'1234 5678 9012 3456'}
-                />
-                <Text style={styles.errorText}>{cardNumberError}</Text>
+            <Text style={styles.headerText}>Payment Information</Text>
 
-                {/* expiry date input */}
-                <Input
-                    label="Expiry Date"
-                    value={expiryDateMM}
-                    onChangeText={(text) => {
-                        setExpiryDateMM(text);
-                        setExpiryDateErrorMM('');
-                    }}
-                    inputContainerStyle={styles.inputContainerShort}
-                    inputStyle={styles.inputStyle}
-                    labelStyle={{
-                        color: '#372948'
-                    }}
-                    placeholder={'MM'}
-                />
-                <Text style={styles.errorText}>{expiryDateErrorMM}</Text>
+            <Input
+                label="Card Number"
+                value={cardNumber}
+                onChangeText={(text) => {
+                    setCardNumber(text);
+                    setCardNumberError('');
+                }}
+                inputContainerStyle={styles.inputContainer}
+                inputStyle={styles.inputStyle}
+                labelStyle={{
+                    color: '#372948'
+                }}
+                placeholder={'1234 5678 9012 3456'}
+            />
+            <Text style={styles.errorText}>{cardNumberError}</Text>
 
-                <Input
-                    value={expiryDateYY}
-                    onChangeText={(text) => {
-                        setExpiryDateYY(text);
-                        setExpiryDateErrorYY('');
-                    }}
-                    inputContainerStyle={styles.inputContainerShort}
-                    inputStyle={styles.inputStyle}
-                    labelStyle={{
-                        color: '#372948'
-                    }}
-                    placeholder={'YY'}
-                />
-                <Text style={styles.errorText}>{expiryDateErrorYY}</Text>
 
-                <Input
-                    label="CVV"
-                    value={cvv}
-                    onChangeText={(text) => {
-                        setCVV(text);
-                        setCVVError('');
-                    }}
-                    inputContainerStyle={styles.inputContainerShort}
-                    inputStyle={styles.inputStyle}
-                    labelStyle={{
-                        color: '#372948'
-                    }}
-                    placeholder={'123'}
-                />
-                <Text style={styles.errorText}>{cvvError}</Text>
+            <Input
+                label="Expiry Date"
+                value={expiryDateMM}
+                onChangeText={(text) => {
+                    setExpiryDateMM(text);
+                    setExpiryDateErrorMM('');
+                }}
+                inputContainerStyle={styles.inputContainerShort}
+                inputStyle={styles.inputStyle}
+                labelStyle={{
+                    color: '#372948'
+                }}
+                placeholder={'MM'}
+            />
+            <Text style={styles.errorText}>{expiryDateErrorMM}</Text>
 
-                <Input
-                    label="Cardholder Name"
-                    value={cardholder}
-                    onChangeText={(text) => {
-                        setCardholder(text);
-                        setCardholderError('');
-                    }}
-                    inputContainerStyle={styles.inputContainer}
-                    inputStyle={styles.inputStyle}
-                    labelStyle={{
-                        color: '#372948'
-                    }}
-                    placeholder={'Cardholder name'}
-                />
-                <Text style={styles.errorText}>{cardHolderError}</Text>
+            <Input
+                value={expiryDateYY}
+                onChangeText={(text) => {
+                    setExpiryDateYY(text);
+                    setExpiryDateErrorYY('');
+                }}
+                inputContainerStyle={styles.inputContainerShort}
+                inputStyle={styles.inputStyle}
+                labelStyle={{
+                    color: '#372948'
+                }}
+                placeholder={'YY'}
+            />
+            <Text style={styles.errorText}>{expiryDateErrorYY}</Text>
 
-                <Button
+
+            <Input
+                label="CVV"
+                value={cvv}
+                onChangeText={(text) => {
+                    setCVV(text);
+                    setCVVError('');
+                }}
+                inputContainerStyle={styles.inputContainerShort}
+                inputStyle={styles.inputStyle}
+                labelStyle={{
+                    color: '#372948'
+                }}
+                placeholder={'123'}
+            />
+            <Text style={styles.errorText}>{cvvError}</Text>
+
+            <Input
+                label="Cardholder Name"
+                value={cardholder}
+                onChangeText={(text) => {
+                    setCardholder(text);
+                    setCardholderError('');
+                }}
+                inputContainerStyle={styles.inputContainer}
+                inputStyle={styles.inputStyle}
+                labelStyle={{
+                    color: '#372948'
+                }}
+                placeholder={'Cardholder name'}
+            />
+            <Text style={styles.errorText}>{cardHolderError}</Text>
+
+            <Button
                 title='Next'
                 onPress={handleNext}
                 buttonStyle={{
@@ -231,8 +233,7 @@ const Register_payment_info = () => {
                     fontSize: 18,
                 }}
             />
-
-            </ScrollView>
+        </ScrollView>
     );
 };
 

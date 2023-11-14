@@ -23,11 +23,12 @@ const Register_personal_info = () => {
     return (
         <ScrollView contentContainerStyle={styles.container}>
              <Image
-                source={{ uri: 'https://cdn-icons-png.flaticon.com/512/5219/5219574.png' }}
+                source={{ uri: 'https://cdn-icons-png.flaticon.com/512/201/201623.png' }}
                 style={{ width: 200, height: 200 }}
                 containerStyle={{
                     marginLeft: 'auto',
-                    marginRight: 'auto'
+                    marginRight: 'auto',
+                    marginBottom: 20
                 }}
             />
             <Text style={{
@@ -96,7 +97,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#FFECEF',
+        backgroundColor: '#ffffff',
         elevation: 0
     },
     buttonContainer: {

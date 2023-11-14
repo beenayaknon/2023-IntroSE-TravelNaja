@@ -36,104 +36,119 @@ const Profile = ({ route }) => {
 
     const styles = StyleSheet.create({
         container: {
-            backgroundColor: '#FFECEF'
+            backgroundColor: '#ffffff'
         },
         HeaderText: {
             fontSize: 22,
             fontWeight: 'bold',
             color: '#372948',
         },
-        infoText:{
+        infoText: {
             fontSize: 20,
             color: '#372948'
         },
         infoBlock: {
             borderBottomWidth: 1,
-            borderBottomColor: '#FFECEF',
+            borderBottomColor: '#F5F5F5',
             paddingTop: 5,
             paddingBottom: 5,
             paddingLeft: 20,
-            backgroundColor: '#ffffff'
         }
     });
 
     return (
         <ScrollView style={styles.container}>
-            <Text style={{
-                fontSize: 22,
-                color: '#372948',
-                marginLeft: 20,
-                marginBottom: 10
-            }}>Profile</Text>
-            <View>
-                <View style={styles.infoBlock}>
-                    <Text style={styles.HeaderText}>Username</Text>
-                    <Text style={styles.infoText}>{userDetails.username}</Text>
-                </View>
+            <View style={{
+                paddingTop: 50,
+                backgroundColor: '#372948',
+                borderBottomLeftRadius: 25,
+                borderBottomRightRadius: 25
+            }}>
+                <Text style={{
+                    fontSize: 22,
+                    fontWeight: 'bold',
+                    color: '#ffffff',
+                    textAlign: 'center',
+                    marginBottom: 30
+                }}>Profile</Text>
+            </View>
 
-                <View style={styles.infoBlock}>
-                    <Text style={styles.HeaderText}>Email</Text>
-                    <Text style={styles.infoText}>{userDetails.email}</Text>
-                </View>
-
-                <View style={styles.infoBlock}>
-                    <Text style={styles.HeaderText}>First Name</Text>
-                    <Text style={styles.infoText}>{userDetails.firstName}</Text>
-                </View>
-
-                <View style={styles.infoBlock}>
-                    <Text style={styles.HeaderText}>Last Name</Text>
-                    <Text style={styles.infoText}>{userDetails.lastName}</Text>
-                </View>
-
-                <View style={styles.infoBlock}>
-                    <Text style={styles.HeaderText}>Mobile</Text>
-                    <Text style={styles.infoText}>{userDetails.mobile}</Text>
-                </View>
-
-                <View style={styles.infoBlock}>
-                    <Text style={styles.HeaderText}>Favorite Car</Text>
-                    {userDetails.favoriteCar ? (
-                        <Text style={styles.infoText}>{userDetails.favoriteCar}</Text>
-                    ) : (
-                        <Text style={styles.infoText}>-</Text>
-                    )}
-                </View>
-
-                <View style={styles.infoBlock}>
-                    <Text style={styles.HeaderText}>Favorite Hotel</Text>
-                    {userDetails.favoriteHotel ? (
-                        <Text style={styles.infoText}>{userDetails.favoriteHotel}</Text>
-                    ) : (
-                        <Text style={styles.infoText}>-</Text>
-                    )}
-                </View>
-
+            <View style={{
+                padding: 35,
+                marginTop: 10
+            }}>
                 <View style={{
-                    alignItems: 'center'
-                }}>  
-                <Button
-                    title='Logout'
-                    onPress={handleNext}
-                    buttonStyle={{
-                        backgroundColor: '#372948',
-                        padding: 10,
-                        marginBottom: 20,
-                        borderRadius: 50,
-                        marginTop: 20,
-                        paddingLeft: 30,
-                        paddingRight: 30,
-                        alignItems: 'center'
-                    }}
-                    titleStyle={{
-                        color: '#ffffff',
-                        fontSize: 18,
-                    }}
-                />
-                </View>
-                </View>
+                    backgroundColor: '#ffffff'
+                }}>
+                    <View style={styles.infoBlock}>
+                        <Text style={styles.HeaderText}>Username</Text>
+                        <Text style={styles.infoText}>{userDetails.username}</Text>
+                    </View>
 
-                
+                    <View style={styles.infoBlock}>
+                        <Text style={styles.HeaderText}>Email</Text>
+                        <Text style={styles.infoText}>{userDetails.email}</Text>
+                    </View>
+
+                    <View style={styles.infoBlock}>
+                        <Text style={styles.HeaderText}>First Name</Text>
+                        <Text style={styles.infoText}>{userDetails.firstName}</Text>
+                    </View>
+
+                    <View style={styles.infoBlock}>
+                        <Text style={styles.HeaderText}>Last Name</Text>
+                        <Text style={styles.infoText}>{userDetails.lastName}</Text>
+                    </View>
+
+                    <View style={styles.infoBlock}>
+                        <Text style={styles.HeaderText}>Mobile</Text>
+                        <Text style={styles.infoText}>{userDetails.mobile}</Text>
+                    </View>
+
+                    <View style={styles.infoBlock}>
+                        <Text style={styles.HeaderText}>Favorite Car</Text>
+                        {userDetails.favoriteCar ? (
+                            <Text style={styles.infoText}>{userDetails.favoriteCar}</Text>
+                        ) : (
+                            <Text style={styles.infoText}>-</Text>
+                        )}
+                    </View>
+
+                    <View style={styles.infoBlock}>
+                        <Text style={styles.HeaderText}>Favorite Hotel</Text>
+                        {userDetails.favoriteHotel ? (
+                            <Text style={styles.infoText}>{userDetails.favoriteHotel}</Text>
+                        ) : (
+                            <Text style={styles.infoText}>-</Text>
+                        )}
+                    </View>
+
+                    <View style={{
+                        alignItems: 'center'
+                    }}>
+                        <Button
+                            title='Logout'
+                            onPress={handleNext}
+                            buttonStyle={{
+                                backgroundColor: '#372948',
+                                padding: 10,
+                                marginBottom: 20,
+                                borderRadius: 50,
+                                marginTop: 20,
+                                paddingLeft: 30,
+                                paddingRight: 30,
+                                alignItems: 'center'
+                            }}
+                            titleStyle={{
+                                color: '#ffffff',
+                                fontSize: 18,
+                            }}
+                        />
+                    </View>
+                </View>
+            </View>
+
+
         </ScrollView >
     );
 };

@@ -24,14 +24,13 @@ const Register_email = () => {
 
     const styles = StyleSheet.create({
         container: {
-            padding: 35,
-            backgroundColor: '#FFECEF'
+            backgroundColor: '#ffffff'
         },
         errorText: {
             color: 'red',
         },
         inputContainer: {
-            backgroundColor: '#FFFFFF',
+            backgroundColor: '#F5F5F5',
             borderRadius: 10,
             paddingLeft: 20,
             borderColor: '#FFFFFF',
@@ -45,7 +44,7 @@ const Register_email = () => {
         headerText: {
             fontSize: 22,
             fontWeight: 'bold',
-            color: '#372948',
+            color: '#ffffff',
             textAlign: 'center',
             marginBottom: 30
         }
@@ -102,99 +101,104 @@ const Register_email = () => {
     return (
 
         <ScrollView style={styles.container}>
-            <Image
-                source={{ uri: 'https://cdn-icons-png.flaticon.com/512/5219/5219574.png' }}
-                style={{ width: 200, height: 200 }}
-                containerStyle={{
-                    marginLeft: 'auto',
-                    marginRight: 'auto'
-                }}
-            />
-            <Text style={styles.headerText}>Welcome to Travel Naja!</Text>
-            <Input
-                label="Email"
-                value={email}
-                onChangeText={(text) => {
-                    setEmail(text);
-                    setEmailError('');
-                }}
-                inputContainerStyle={styles.inputContainer}
-                inputStyle={styles.inputStyle}
-                leftIcon={
-                    <Icon
-                        name='envelope'
-                        size={20}
-                        color='#9B9B9B'
-                    />
-                }
-                labelStyle={{
-                    color: '#372948'
-                }}
-                placeholder={'youremail@mail.com'}
-            />
-            <Text style={styles.errorText}>{emailError}</Text>
+            <View style={{
+                paddingTop: 50,
+                backgroundColor: '#372948',
+                borderBottomLeftRadius: 25,
+                borderBottomRightRadius: 25
+            }}>
+                <Text style={styles.headerText}>Welcome to Travel Naja!</Text>
+            </View>
 
-            <Input
-                label="Username"
-                value={username}
-                onChangeText={(text) => {
-                    setUsername(text);
-                    setUsernameError('');
-                }}
-                inputContainerStyle={styles.inputContainer}
-                inputStyle={styles.inputStyle}
-                leftIcon={
-                    <Icon
-                        name='user'
-                        size={20}
-                        color='#9B9B9B'
-                    />
-                }
-                labelStyle={{
-                    color: '#372948'
-                }}
-                placeholder={'username'}
-            />
-            <Text style={styles.errorText}>{usernameError}</Text>
+            <View style={{
+                padding: 35,
+                marginTop: 10
+            }}>
+                <Input
+                    label="Email"
+                    value={email}
+                    onChangeText={(text) => {
+                        setEmail(text);
+                        setEmailError('');
+                    }}
+                    inputContainerStyle={styles.inputContainer}
+                    inputStyle={styles.inputStyle}
+                    leftIcon={
+                        <Icon
+                            name='envelope'
+                            size={20}
+                            color='#9B9B9B'
+                        />
+                    }
+                    labelStyle={{
+                        color: '#372948'
+                    }}
+                    placeholder={'youremail@mail.com'}
+                />
+                <Text style={styles.errorText}>{emailError}</Text>
 
-            {/* password input */}
-            <Input
-                label="Password"
-                value={password}
-                onChangeText={(text) => {
-                    setPassword(text);
-                    setPasswordError('');
-                }}
-                inputContainerStyle={styles.inputContainer}
-                inputStyle={styles.inputStyle}
-                leftIcon={
-                    <Icon
-                        name='lock'
-                        size={20}
-                        color='#9B9B9B'
-                    />
-                }
-                labelStyle={{
-                    color: '#372948'
-                }}
-                placeholder={'password'}
-            />
-            <Text style={styles.errorText}>{passwordError}</Text>
+                <Input
+                    label="Username"
+                    value={username}
+                    onChangeText={(text) => {
+                        setUsername(text);
+                        setUsernameError('');
+                    }}
+                    inputContainerStyle={styles.inputContainer}
+                    inputStyle={styles.inputStyle}
+                    leftIcon={
+                        <Icon
+                            name='user'
+                            size={20}
+                            color='#9B9B9B'
+                        />
+                    }
+                    labelStyle={{
+                        color: '#372948'
+                    }}
+                    placeholder={'username'}
+                />
+                <Text style={styles.errorText}>{usernameError}</Text>
 
-            <Button
-                title='Next'
-                onPress={handleRegister}
-                buttonStyle={{
-                    backgroundColor: '#372948',
-                    padding: 10,
-                    marginBottom: 20,
-                    borderRadius: 50,
-                }}
-                titleStyle={{
-                    color: '#ffffff',
-                    fontSize: 18,
-                }}
-            />
+                {/* password input */}
+                <Input
+                    label="Password"
+                    value={password}
+                    onChangeText={(text) => {
+                        setPassword(text);
+                        setPasswordError('');
+                    }}
+                    inputContainerStyle={styles.inputContainer}
+                    inputStyle={styles.inputStyle}
+                    leftIcon={
+                        <Icon
+                            name='lock'
+                            size={20}
+                            color='#9B9B9B'
+                        />
+                    }
+                    labelStyle={{
+                        color: '#372948'
+                    }}
+                    placeholder={'password'}
+                />
+                <Text style={styles.errorText}>{passwordError}</Text>
+
+                <Button
+                    title='Next'
+                    onPress={handleRegister}
+                    buttonStyle={{
+                        backgroundColor: '#372948',
+                        padding: 10,
+                        marginBottom: 20,
+                        borderRadius: 50,
+                    }}
+                    titleStyle={{
+                        color: '#ffffff',
+                        fontSize: 18,
+                    }}
+                />
+            </View>
         </ScrollView>
     );
 };
