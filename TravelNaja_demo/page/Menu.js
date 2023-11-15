@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, ScrollView, View, Text } from 'react-native';
-import { ThemeProvider, Button, Image } from 'react-native-elements';
+import { ThemeProvider, Button, Image, Input } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
+import Icon from "react-native-vector-icons/FontAwesome";
 
 const Register_personal_info = () => {
     const navigation = useNavigation();
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
 
     const handleRegister = () => {
         navigation.navigate('Register_email');
@@ -14,49 +17,63 @@ const Register_personal_info = () => {
         navigation.navigate('ApplyGuide');
     };
 
-    const theme = {
-        Button: {
-            raised: true,
-        },
-    };
-
     return (
         <ScrollView contentContainerStyle={styles.container}>
-             <Image
-                source={{ uri: 'https://cdn-icons-png.flaticon.com/512/201/201623.png' }}
-                style={{ width: 200, height: 200 }}
-                containerStyle={{
-                    marginLeft: 'auto',
-                    marginRight: 'auto',
-                    marginBottom: 20
-                }}
-            />
             <Text style={{
                 fontSize: 24,
                 color: '#372948',
                 textAlign: 'center',
                 fontWeight: 'bold',
-                marginBottom: 20
+                marginBottom: 10
             }}>Travel Naja</Text>
-            <Text style={styles.headerText}>Best ever multiple universe globally sugoi travel reservation system</Text>
+            <Text style={styles.headerText}>Sign in</Text>
+           
             <View style={styles.buttonContainer}>
-                <Button
-                    title='Register'
-                    onPress={handleRegister}
-                    buttonStyle={{
-                        backgroundColor: '#372948',
-                        padding: 10,
-                        elevation: 0,
-                        marginBottom: 20,
-                        borderRadius: 50
+                <Input
+                    label="Username"
+                    value={username}
+                    onChangeText={(text) => {
+                        setUsername(text);
                     }}
-                    titleStyle={{
-                        color: '#ffffff',
-                        fontSize: 18
+                    inputContainerStyle={styles.inputContainer}
+                    inputStyle={styles.inputStyle}
+                    leftIcon={
+                        <Icon
+                            name='user'
+                            size={20}
+                            color='#9B9B9B'
+                        />
+                    }
+                    labelStyle={{
+                        color: '#372948'
                     }}
+                    placeholder={'username'}
                 />
+
+                {/* password input */}
+                <Input
+                    label="Password"
+                    value={password}
+                    onChangeText={(text) => {
+                        setPassword(text);
+                    }}
+                    inputContainerStyle={styles.inputContainer}
+                    inputStyle={styles.inputStyle}
+                    leftIcon={
+                        <Icon
+                            name='lock'
+                            size={20}
+                            color='#9B9B9B'
+                        />
+                    }
+                    labelStyle={{
+                        color: '#372948'
+                    }}
+                    placeholder={'password'}
+                />
+
                 <Button
-                    title='Login'
+                    title='Sign in'
                     buttonStyle={{
                         backgroundColor: '#ffffff',
                         padding: 10,
@@ -72,6 +89,23 @@ const Register_personal_info = () => {
                         borderRadius: 50
                     }}
                 />
+
+                <Button
+                    title='Create account'
+                    onPress={handleRegister}
+                    buttonStyle={{
+                        backgroundColor: '#372948',
+                        padding: 10,
+                        elevation: 0,
+                        marginBottom: 20,
+                        borderRadius: 50
+                    }}
+                    titleStyle={{
+                        color: '#ffffff',
+                        fontSize: 18
+                    }}
+                />
+
                 <Button
                     title='Apply Local Guide'
                     onPress={handleApplyGuide}
@@ -88,6 +122,7 @@ const Register_personal_info = () => {
                     }}
                 />
             </View>
+            <Text style={styles.footerText}>By signing in and applying local guide, I agree to Travel Naja's Term of Use and Privacy Policy</Text>
         </ScrollView>
     );
 };
@@ -102,15 +137,31 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         padding: 35,
-        elevation: 0,
         width: '100%'
     },
     headerText: {
-        marginBottom: 30,
         fontSize: 18,
         color: '#372948',
         textAlign: 'center',
-        width: '70%'
+        width: '85%'
+    },
+    footerText: {
+        fontSize: 16,
+        color: '#372948',
+        textAlign: 'center',
+        width: '85%'
+    },
+    inputContainer: {
+        backgroundColor: '#F5F5F5',
+        borderRadius: 10,
+        paddingLeft: 20,
+        borderColor: '#FFFFFF',
+    },
+    inputStyle: {
+        marginLeft: 10,
+    },
+    iconStyle: {
+        marginRight: 10,
     }
 });
 

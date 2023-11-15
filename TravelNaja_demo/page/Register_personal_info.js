@@ -201,7 +201,7 @@ const Register_personal_info = () => {
                 buttonStyle={{
                     backgroundColor: '#372948',
                     padding: 10,
-                    marginBottom: 20,
+                    marginTop: 20,
                     borderRadius: 50,
                 }}
                 titleStyle={{

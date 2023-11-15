@@ -95,14 +95,9 @@ const Register_payment_info = () => {
             return;
         }
 
-        if (cardNumber.length != 16) {
-            setCardNumberError(' Card number should have 16 digits');
-            return;
-        }
-
         // Check if card number contains only numeric characters
-        if (!/^\d+$/.test(cardNumber)) {
-            setCardNumberError('Card number should only contain numbers (0-9)');
+        if (!/^\d+$/.test(cardNumber || cardNumber.length != 16)) {
+            setCardNumberError('Card number should contain 16 digits (0-9)');
             return;
         }
 
@@ -112,8 +107,8 @@ const Register_payment_info = () => {
             return;
         }
 
-        if (!/^[A-Za-z]+$/.test(cardholder)) {
-            setCardholderError('Cardholder name should not contain numbers (0-9) or special characters');
+        if (!/^[A-Za-z\s]+$/.test(cardholder)) {
+            setCardholderError('Cardholder name should not contain numbers or special characters');
             return;
         }
 
@@ -150,7 +145,7 @@ const Register_payment_info = () => {
                 labelStyle={{
                     color: '#372948'
                 }}
-                placeholder={'1234 5678 9012 3456'}
+                placeholder={'1234567891011121'}
             />
             <Text style={styles.errorText}>{cardNumberError}</Text>
 
@@ -225,7 +220,7 @@ const Register_payment_info = () => {
                 buttonStyle={{
                     backgroundColor: '#372948',
                     padding: 10,
-                    marginBottom: 20,
+                    marginTop: 20,
                     borderRadius: 50,
                 }}
                 titleStyle={{

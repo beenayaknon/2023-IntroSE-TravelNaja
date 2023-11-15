@@ -12,9 +12,11 @@ const Register_email = () => {
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [emailError, setEmailError] = useState('');
     const [usernameError, setUsernameError] = useState('');
     const [passwordError, setPasswordError] = useState('');
+    const [confirmPasswordError, setConfirmPasswordError] = useState('');
 
     const theme = {
         Button: {
@@ -65,17 +67,13 @@ const Register_email = () => {
             return;
         }
 
-        // Check if the username contains specific characters
-        const invalidUsernameChars = ['@', '#', '$', '%', '&'];
-        if (invalidUsernameChars.some(char => username.includes(char))) {
-            setUsernameError('  Username cannot contain specific character (@, #, $, %, or &)');
+        if (!confirmPassword) {
+            setConfirmPasswordError('Please fill in the confirm password field');
             return;
         }
 
-        // Check if the password contains specific characters
-        const invalidPasswordChars = ['!', '@', '#', '$', '%'];
-        if (invalidPasswordChars.some(char => password.includes(char))) {
-            setPasswordError('  Password cannot contain specific character (@, #, $, %, or &)');
+        if (password !== confirmPassword) {
+            setConfirmPasswordError("Password didn't match");
             return;
         }
 
@@ -90,7 +88,6 @@ const Register_email = () => {
             username: username,
             password: password
         });
-
         // Navigate to the next page and pass the new document key
         navigation.navigate('Register_personal_info', {
             userId: newPostKey
@@ -181,8 +178,33 @@ const Register_email = () => {
                         color: '#372948'
                     }}
                     placeholder={'password'}
+                    secureTextEntry={true}
                 />
                 <Text style={styles.errorText}>{passwordError}</Text>
+
+                <Input
+                label="Confirm Password"
+                value={confirmPassword}
+                onChangeText={(text) => {
+                    setConfirmPassword(text);
+                    setConfirmPasswordError('');
+                }}
+                inputContainerStyle={styles.inputContainer}
+                inputStyle={styles.inputStyle}
+                leftIcon={
+                    <Icon
+                        name='lock'
+                        size={20}
+                        color='#9B9B9B'
+                    />
+                }
+                labelStyle={{
+                    color: '#372948'
+                }}
+                placeholder={'confirm password'}
+                secureTextEntry={true}
+            />
+            <Text style={styles.errorText}>{confirmPasswordError}</Text>
 
                 <Button
                     title='Next'
@@ -190,7 +212,7 @@ const Register_email = () => {
                     buttonStyle={{
                         backgroundColor: '#372948',
                         padding: 10,
-                        marginBottom: 20,
+                        marginTop: 20,
                         borderRadius: 50,
                     }}
                     titleStyle={{

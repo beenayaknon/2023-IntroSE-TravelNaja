@@ -46,6 +46,7 @@ const ApplyGuide = () => {
         },
         errorText: {
             color: 'red',
+            textAlign: 'left'
         },
         inputContainer: {
             backgroundColor: '#F5F5F5',
@@ -63,7 +64,14 @@ const ApplyGuide = () => {
             color: '#372948',
             textAlign: 'center',
             marginBottom: 30
-        }
+        },
+        footerText: {
+            fontSize: 16,
+            color: '#372948',
+            textAlign: 'center',
+            width: '85%',
+            textAlign: 'center'
+        },
     });
 
     const handleSubmit = () => {
@@ -184,7 +192,7 @@ const ApplyGuide = () => {
 
             <View style={{
                 padding: 35,
-                marginTop: 10
+                marginTop: 10,
             }}>
                 <Input
                     label="First name"
@@ -307,18 +315,30 @@ const ApplyGuide = () => {
                 />
                 {errorTourProgram ? <Text style={styles.errorText}>{errorTourProgram}</Text> : null}
 
-                <Button
+            </View>
+
+            <View style={{
+                alignItems: 'center'
+            }}>
+            <Text style={styles.footerText}>By signing in and applying local guide, I agree to Travel Naja's Term of Use and Privacy Policy</Text>
+            <Button
                     title='Submit'
                     onPress={handleSubmit}
                     buttonStyle={{
                         backgroundColor: '#372948',
-                        padding: 10,
-                        elevation: 0,
                         marginBottom: 20,
-                        borderRadius: 50
+                        borderRadius: 50,
+                        marginTop: 20,
+                        paddingLeft: 30,
+                        paddingRight: 30,
+                        alignItems: 'center'
+                    }}
+                    titleStyle={{
+                        color: '#ffffff',
+                        fontSize: 18,
                     }}
                 />
-            </View>
+                </View>
         </ScrollView>
     );
 };

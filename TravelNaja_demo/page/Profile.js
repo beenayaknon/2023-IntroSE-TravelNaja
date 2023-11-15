@@ -65,21 +65,46 @@ const Profile = ({ route }) => {
                 borderBottomRightRadius: 25
             }}>
                 <Text style={{
-                    fontSize: 22,
+                    fontSize: 24,
                     fontWeight: 'bold',
                     color: '#ffffff',
                     textAlign: 'center',
                     marginBottom: 30
                 }}>Profile</Text>
+                 <Text style={{fontSize: 20,
+                    color: '#ffffff',
+                    textAlign: 'center',
+                    marginBottom: 30}}>{userDetails.firstName} {userDetails.lastName}</Text>
             </View>
 
             <View style={{
-                padding: 35,
-                marginTop: 10
+                paddingBottom: 5,
+                paddingLeft: 35,
+                paddingRight: 35,
+
             }}>
                 <View style={{
                     backgroundColor: '#ffffff'
                 }}>
+                    <Button
+                            title='Edit profile'
+                            buttonStyle={{
+                                backgroundColor: '#ffffff',
+                                padding: 10,
+                                marginBottom: 20,
+                                borderRadius: 50,
+                                marginTop: 20,
+                                paddingLeft: 30,
+                                paddingRight: 30,
+                                alignItems: 'center',
+                                borderWidth: 2,
+                                borderColor: '#372948'
+                            }}
+                            titleStyle={{
+                                color: '#372948',
+                                fontSize: 18,
+                            }}
+                        />
                     <View style={styles.infoBlock}>
                         <Text style={styles.HeaderText}>Username</Text>
                         <Text style={styles.infoText}>{userDetails.username}</Text>
@@ -88,16 +113,6 @@ const Profile = ({ route }) => {
                     <View style={styles.infoBlock}>
                         <Text style={styles.HeaderText}>Email</Text>
                         <Text style={styles.infoText}>{userDetails.email}</Text>
-                    </View>
-
-                    <View style={styles.infoBlock}>
-                        <Text style={styles.HeaderText}>First Name</Text>
-                        <Text style={styles.infoText}>{userDetails.firstName}</Text>
-                    </View>
-
-                    <View style={styles.infoBlock}>
-                        <Text style={styles.HeaderText}>Last Name</Text>
-                        <Text style={styles.infoText}>{userDetails.lastName}</Text>
                     </View>
 
                     <View style={styles.infoBlock}>
@@ -123,11 +138,8 @@ const Profile = ({ route }) => {
                         )}
                     </View>
 
-                    <View style={{
-                        alignItems: 'center'
-                    }}>
                         <Button
-                            title='Logout'
+                            title='Sign out'
                             onPress={handleNext}
                             buttonStyle={{
                                 backgroundColor: '#372948',
@@ -144,7 +156,7 @@ const Profile = ({ route }) => {
                                 fontSize: 18,
                             }}
                         />
-                    </View>
+
                 </View>
             </View>
 
