@@ -3,6 +3,7 @@ import { ref, onValue, off } from 'firebase/database';
 import { db } from '../config';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './ApprovedGuide.css';
 
 const ApproveGuide = () => {
   const [approvedGuideList, setApprovedGuideList] = useState([]);
@@ -18,52 +19,68 @@ const ApproveGuide = () => {
       }
     };
 
-    // Attach an asynchronous callback to read the data
     onValue(dbRef, handleData);
 
-    // Detach the callback when the component unmounts
     return () => {
       off(dbRef, 'value', handleData);
     };
   }, []);
 
   return (
-    <div className="container-fluid">
-      <div className="row">
-        {/* Navigation Bar */}
-        <nav className="col-md-2 d-none d-md-block bg-light sidebar">
-          <div className="sidebar-sticky">
-            <ul className="nav flex-column">
-              <li className="nav-item">
-                <a className="nav-link active" href="/">
-                  Register Local Guide List
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="ApprovedGuide">
-                  Approved Local Guide List
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  User Management
-                </a>
-              </li>
-            </ul>
-          </div>
+    <div className="contain">
+      {/* Sidebar */}
+
+        <nav id="sidebar" className="sidebar">
+          <h3 style={{
+            marginLeft: '3%',
+            color: '#ffffff',
+          }}>Travel Naja</h3>
+          <p style={{
+            marginLeft: '3%',
+            color: '#ffffff',
+            marginBottom: '30%',
+            fontSize: 14
+          }}>Local guide Management demo</p>
+          <ul className="nav flex-column" style={{ height: '100vh', overflowY: 'auto'}}>
+            <li className="nav-item">
+              <a className="nav-link" href="/">
+                Overview
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/">
+                Waiting for approval Guide
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="ApprovedGuide">
+                Approved Local Guide
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#">
+                User Management
+              </a>
+            </li>
+          </ul>
         </nav>
 
-        {/* Main Content */}
-        <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-4">
-          <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h2 className="h2">List of Approved Guides</h2>
-          </div>
+
+      {/* Main Content */}
+      <div className='a'>
+
+        <div className="topbar">
+          <h2 className="h2">List of Approved Guides</h2>
+        </div>
+        <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-4 main-content">
           <ul className="list-group">
             {approvedGuideList.map((guide, index) => (
               <li key={index} className="list-group-item">
-                <strong>
-                  {guide.firstName} {guide.lastName}
-                </strong>
+                <div className='bb'>
+                  <strong>
+                    {guide.firstName} {guide.lastName}
+                  </strong>
+                </div>
                 <br />
                 <strong>ID Number:</strong> {guide.idNumber}<br />
                 <strong>Mobile:</strong> {guide.mobile}<br />
